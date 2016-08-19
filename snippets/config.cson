@@ -1,0 +1,27 @@
+'.source.js':
+  'ngConfig':
+    'prefix': 'ngconfig'
+    'body': """
+        (function() {
+            'use strict';
+
+            angular
+                .module('${1:module}')
+                .config(${2:config});
+
+            ${2:config}.$inject = [['$routeProvider', '$locationProvider']];
+
+            /* @ngInject */
+            function ${2:config}($routeProvider, $locationProvider) {
+                $routeProvider
+                    .when('/${2:route}', {
+                        templateUrl: '${2:route}/views/${2:route}-list.html',
+                        controller: '${2:route}ReadController',
+                        controllerAs: '${2:route}Read'
+                    })
+                    .otherwise({
+                        redirectTo: '/'
+                    });
+            }
+        })();
+"""
